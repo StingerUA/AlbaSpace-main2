@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alba Space 3D Galeri</title>
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <style>
+    body {
+      margin:0;
+      font-family:Arial, sans-serif;
+      background:url('/assets/images/space-bg.jpg') no-repeat center center fixed;
+      background-size:cover;
+      color:#fff;
+      opacity:0;
+      animation:fadeIn 0.8s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      to { opacity:1; }
+    }
+    .logo {
+      position:fixed; top:16px; left:16px; z-index:100;
+    }
+    .logo img {
+      width:70px; border-radius:50%; box-shadow:0 0 10px rgba(0,0,0,0.6);
+    }
+    .top-bar {
+      position:fixed;
+      top:16px;
+      right:16px;
+      z-index:90;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:8px;
+    }
+    .lang-switch button {
+      border:none;
+      padding:4px 10px;
+      margin-left:4px;
+      border-radius:999px;
+      background:rgba(0,0,0,0.6);
+      color:#fff;
+      cursor:pointer;
+      font-size:12px;
+    }
+    .lang-switch button.active {
+      background:#00b4ff;
+      color:#000;
+      font-weight:bold;
+    }
+    nav.main-nav {
+      background:rgba(0,0,0,0.55);
+      border-radius:999px;
+      padding:6px 14px;
+      display:flex;
+      gap:10px;
+      box-shadow:0 0 18px rgba(0,0,0,0.7);
+    }
+    nav.main-nav a {
+      color:#fff;
+      text-decoration:none;
+      font-size:13px;
+      padding:4px 8px;
+      border-radius:999px;
+      white-space:nowrap;
+    }
+    nav.main-nav a:hover {
+      background:rgba(255,255,255,0.12);
+    }
+    h1 {
+      text-align:center;
+      margin-top:100px;
+      margin-bottom:20px;
+      text-shadow:0 0 15px #000;
+    }
+    .list-wrapper {
+      max-width:650px;
+      margin:0 auto 60px auto;
+      background:rgba(0,0,0,0.5);
+      border-radius:16px;
+      padding:20px;
+      box-shadow:0 0 30px rgba(0,0,0,0.7);
+    }
+    ul {
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+    li {
+      margin:6px 0;
+      text-align:center;
+    }
+    a.obj-link {
+      color:#8fd3ff;
+      text-decoration:none;
+      font-size:16px;
+    }
+    a.obj-link:hover {
+      text-decoration:underline;
+    }
+    @media (max-width:768px) {
+      h1 { margin-top:90px; font-size:26px; }
+      nav.main-nav { flex-wrap:wrap; justify-content:flex-end; }
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const params = new URLSearchParams(window.location.search);
+      const lang = params.get('lang') || 'tr';
+      document.documentElement.lang = lang;
+      const trBtn = document.getElementById('lang-tr');
+      const enBtn = document.getElementById('lang-en');
+      if (trBtn && enBtn) {
+        if (lang === 'tr') {
+          trBtn.classList.add('active');
+        } else {
+          enBtn.classList.add('active');
+        }
+        function setLang(code) {
+          const url = new URL(window.location.href);
+          url.searchParams.set('lang', code);
+          window.location.href = url.toString();
+        }
+        trBtn.onclick = () => setLang('tr');
+        enBtn.onclick = () => setLang('en');
+      }
+    });
+  </script>
+</head>
+<body>
+  <a class="logo" href="/"><img src="/assets/images/albalogo.png" alt="Alba Space Logo" /></a>
+
+  <div class="top-bar">
+    <div class="lang-switch">
+      <button id="lang-tr">TR</button>
+      <button id="lang-en">EN</button>
+    </div>
+    <nav class="main-nav">
+      <a href="/">ANASAYFA</a>
+      <a href="/gokturk-1/">UYDULAR</a>
+      <a href="/mars/">GEZEGENLER</a>
+      <a href="/perseverance/">MARS GÖREVLERİ</a>
+      <a href="/iss/">ISS</a>
+    </nav>
+  </div>
+
+  <h1>Alba Space 3D Galeri</h1>
+  <div class="list-wrapper">
+    <ul>
+      <li><a class="obj-link" href="/gokturk-1/">GÖKTÜRK-1</a></li>
+      <li><a class="obj-link" href="/gokturk-2/">GÖKTÜRK-2</a></li>
+      <li><a class="obj-link" href="/rasat/">RASAT</a></li>
+      <li><a class="obj-link" href="/imece/">İMECE</a></li>
+      <li><a class="obj-link" href="/turksat-1A/">TÜRKSAT 1A</a></li>
+      <li><a class="obj-link" href="/turksat-1B/">TÜRKSAT 1B</a></li>
+      <li><a class="obj-link" href="/turksat-1C/">TÜRKSAT 1C</a></li>
+      <li><a class="obj-link" href="/turksat-2A/">TÜRKSAT 2A</a></li>
+      <li><a class="obj-link" href="/turksat-3A/">TÜRKSAT 3A</a></li>
+      <li><a class="obj-link" href="/turksat-3B/">TÜRKSAT 3B</a></li>
+      <li><a class="obj-link" href="/turksat-4A/">TÜRKSAT 4A</a></li>
+      <li><a class="obj-link" href="/turksat-5A/">TÜRKSAT 5A</a></li>
+      <li><a class="obj-link" href="/turksat-5B/">TÜRKSAT 5B</a></li>
+      <li><a class="obj-link" href="/turksat-6A/">TÜRKSAT 6A</a></li>
+      <li><a class="obj-link" href="/lagari/">Lagari Hasan Çelebi</a></li>
+      <li><a class="obj-link" href="/iss/">Uluslararası Uzay İstasyonu</a></li>
+      <li><a class="obj-link" href="/mercury/">Merkür</a></li>
+      <li><a class="obj-link" href="/venus/">Venüs</a></li>
+      <li><a class="obj-link" href="/earth/">Dünya</a></li>
+      <li><a class="obj-link" href="/mars/">Mars</a></li>
+      <li><a class="obj-link" href="/jupiter/">Jüpiter</a></li>
+      <li><a class="obj-link" href="/saturn/">Satürn</a></li>
+      <li><a class="obj-link" href="/uranus/">Uranüs</a></li>
+      <li><a class="obj-link" href="/neptune/">Neptün</a></li>
+      <li><a class="obj-link" href="/hubble/">Hubble Uzay Teleskobu</a></li>
+      <li><a class="obj-link" href="/jameswebb/">James Webb Uzay Teleskobu</a></li>
+      <li><a class="obj-link" href="/kepler/">Kepler Uzay Teleskobu</a></li>
+      <li><a class="obj-link" href="/exomars/">ExoMars</a></li>
+      <li><a class="obj-link" href="/marsodyssey/">Mars Odyssey</a></li>
+      <li><a class="obj-link" href="/marsreconnaissance/">Mars Reconnaissance Orbiter</a></li>
+      <li><a class="obj-link" href="/perseverance/">Perseverance</a></li>
+      <li><a class="obj-link" href="/curiosity/">Curiosity</a></li>
+      <li><a class="obj-link" href="/voyager1/">Voyager 1</a></li>
+      <li><a class="obj-link" href="/voyager2/">Voyager 2</a></li>
+      <li><a class="obj-link" href="/zhurong/">Zhurong</a></li>
+    </ul>
+  </div>
+</body>
+</html>
