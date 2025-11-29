@@ -36,10 +36,29 @@
       border:1px solid rgba(148,163,184,0.5);
       backdrop-filter:blur(20px);
     }
-    header { display:flex; align-items:center; gap:12px; margin-bottom:18px; }
-    header img.logo { width:44px; height:44px; border-radius:999px; padding:4px; background:#020617; }
-    header .title-block span.label { font-size:11px; text-transform:uppercase; letter-spacing:0.16em;
-      color:#a5b4fc; display:inline-flex; align-items:center; gap:6px; }
+
+    header {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:18px;
+    }
+    header img.logo {
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      padding:4px;
+      background:#020617;
+    }
+    header .title-block span.label {
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:0.16em;
+      color:#a5b4fc;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+    }
     header .title-block span.label::before {
       content:"●";
       font-size:10px;
@@ -54,23 +73,42 @@
       font-size:13px;
       color:#cbd5f5;
     }
-    header .badge {
+
+    /* Соцсети в правом верхнем углу */
+    header .social-icons {
       margin-left:auto;
       display:flex;
-      flex-direction:column;
-      align-items:flex-end;
-      gap:4px;
+      align-items:center;
+      gap:10px;
+      font-size:22px;
     }
-    header .badge strong {
-      font-size:12px;
-      padding:4px 10px;
+    .social-icons a,
+    .footer-social a {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:32px;
+      height:32px;
       border-radius:999px;
-      border:1px solid rgba(148,163,184,0.6);
-      background:radial-gradient(circle at top,rgba(56,189,248,0.18),transparent 60%);
+      text-decoration:none;
     }
-    header .badge span {
-      font-size:11px;
-      color:#9ca3af;
+    .social-icon-svg {
+      width:24px;
+      height:24px;
+      fill:none;
+      stroke:#d1d5db;
+      stroke-width:1.6;
+      transition:stroke 0.2s, transform 0.15s;
+    }
+    .social-icon-svg circle,
+    .social-icon-svg path,
+    .social-icon-svg line {
+      stroke:#e5e7eb;
+    }
+    .social-icons a:hover .social-icon-svg,
+    .footer-social a:hover .social-icon-svg {
+      transform:translateY(-1px);
+      stroke:#ffffff;
     }
 
     .intro {
@@ -197,16 +235,14 @@
       background:#0f172a;
       padding:6px;
     }
-    .footer-social a {
-      margin:0 10px;
-      font-size:22px;
-      color:#9ca3af;
-      text-decoration:none;
-      transition:0.2s;
+
+    .footer-social {
+      margin-bottom:15px;
+      display:flex;
+      justify-content:center;
+      gap:12px;
     }
-    .footer-social a:hover {
-      color:white;
-    }
+
     .footer-contacts a {
       color:#d1d5db;
       text-decoration:none;
@@ -218,6 +254,13 @@
     }
     .footer-address {
       line-height:1.5;
+    }
+    .footer-address a {
+      color:#9ca3af;
+      text-decoration:none;
+    }
+    .footer-address a:hover {
+      color:white;
     }
   </style>
 </head>
@@ -235,10 +278,32 @@
           <p>Türk uyduları, gezegenler ve Mars görevlerinin 3D galerisidir.</p>
         </div>
 
-        <div class="badge">
-          <span>Mod:</span>
-          <strong>Static GitHub Pages</strong>
-          <span>v0.2 • Otomatik Üretildi</span>
+        <!-- Соцсети в правом верхнем углу (ч/б иконки) -->
+        <div class="social-icons">
+          <!-- Instagram -->
+          <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg class="social-icon-svg" viewBox="0 0 24 24">
+              <rect x="4" y="4" width="16" height="16" rx="5" ry="5"></rect>
+              <circle cx="12" cy="12" r="4"></circle>
+              <circle cx="17" cy="7" r="1.2"></circle>
+            </svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+            <svg class="social-icon-svg" viewBox="0 0 24 24">
+              <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+              <line x1="8" y1="10" x2="8" y2="16"></line>
+              <circle cx="8" cy="8" r="1"></circle>
+              <path d="M12 16v-3.5a2 2 0 0 1 4 0V16"></path>
+            </svg>
+          </a>
+          <!-- X / Twitter -->
+          <a href="https://x.com" aria-label="X" target="_blank" rel="noopener noreferrer">
+            <svg class="social-icon-svg" viewBox="0 0 24 24">
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+            </svg>
+          </a>
         </div>
       </header>
 
@@ -256,9 +321,7 @@
         <div class="chip">Teleskoplar & Problar</div>
       </div>
 
-      <!-- ————————————————————————————————
-            KARTLAR (Все карточки, полный каталог)
-           ———————————————————————————————— -->
+      <!-- КАРТОЧКИ -->
       <section class="grid">
 
         <!-- Turkish Satellites -->
@@ -282,7 +345,7 @@
 
         <!-- Planets -->
         <a class="card" href="mercury/"><div class="tag">Gezegen</div><h2>Merkür</h2><p>3D görünüm için tıklayın.</p></a>
-        <a class="card" href="venus/"><div class="tag">Gezegen</div><h2>Venüs</h2><p>3D görünüm için tıklayın.</p></a>
+        <a class="card" href="venus/"><div class="tag">Gezegen</div><h2>Venüs</h2><p>3D görünüm için тıklayın.</p></a>
         <a class="card" href="earth/"><div class="tag">Gezegen</div><h2>Dünya</h2><p>3D görünüm için tıklayın.</p></a>
         <a class="card" href="mars/"><div class="tag">Gezegen</div><h2>Mars</h2><p>3D görünüm için tıklayın.</p></a>
         <a class="card" href="jupiter/"><div class="tag">Gezegen</div><h2>Jüpiter</h2><p>3D görünüm için tıklayın.</p></a>
@@ -293,29 +356,27 @@
         <!-- Probes / telescopes -->
         <a class="card" href="sputnik/"><div class="tag">Uydu</div><h2>Sputnik</h2><p>3D görünüm için tıklayın.</p></a>
         <a class="card" href="voyager1/"><div class="tag">Sonda</div><h2>Voyager 1</h2><p>3D görünüm için tıklayın.</p></a>
-        <a class="card" href="voyager2/"><div class="tag">Sonda</div><h2>Voyager 2</h2><p>3D görünüm için tıklayın.</p></a>
-        <a class="card" href="hubble/"><div class="tag">Teleskop</div><h2>Hubble Uzay Teleskobu</h2><p>3D görünüm için tıklayın.</p></a>
-        <a class="card" href="jameswebb/"><div class="tag">Teleskop</div><h2>James Webb Uzay Teleskobu</h2><p>3D görünüm için tıklayın.</p></a>
-        <a class="card" href="kepler/"><div class="tag">Teleskop</div><h2>Kepler Uzay Teleskobu</h2><p>3D görünüm için tıklayın.</p></a>
-        <a class="card" href="exomars/"><div class="tag">Görev</div><h2>ExoMars</h2><p>Görev detayları için tıklayın.</p></a>
-        <a class="card" href="marsodyssey/"><div class="tag">Görev</div><h2>Mars Odyssey</h2><p>Görev detayları için tıklayın.</p></a>
-        <a class="card" href="marsreconnaissance/"><div class="tag">Görev</div><h2>Mars Reconnaissance Orbiter</h2><p>Görev detayları için tıklayın.</p></a>
+        <a class="card" href="voyager2/"><div class="tag">Sonda</div><h2>Voyager 2</h2><p>3D görünüm için тıklayın.</p></a>
+        <a class="card" href="hubble/"><div class="tag">Teleskop</div><h2>Hubble Uzay Teleskobu</h2><p>3D görünüm için тıklayın.</p></a>
+        <a class="card" href="jameswebb/"><div class="tag">Teleskop</div><h2>James Webb Uzay Teleskobu</h2><p>3D görünüm için тıklayın.</p></a>
+        <a class="card" href="kepler/"><div class="tag">Teleskop</div><h2>Kepler Uzay Teleskobu</h2><p>3D görünüm için тıklayın.</p></a>
+        <a class="card" href="exomars/"><div class="tag">Görev</div><h2>ExoMars</h2><p>Görev detayları için тıklayın.</p></a>
+        <a class="card" href="marsodyssey/"><div class="tag">Görev</div><h2>Mars Odyssey</h2><p>Görev detayları için тıklayın.</p></a>
+        <a class="card" href="marsreconnaissance/"><div class="tag">Görev</div><h2>Mars Reconnaissance Orbiter</h2><p>Görev detayları için тıklayın.</p></a>
 
         <!-- Mars Rovers -->
-        <a class="card" href="perseverance/"><div class="tag">Rover</div><h2>Perseverance</h2><p>3D görünüm için tıklayın.</p></a>
-        <a class="card" href="curiosity/"><div class="tag">Rover</div><h2>Curiosity</h2><p>3D görünüm için tıklayın.</p></a>
-        <a class="card" href="ingenuity/"><div class="tag">Helikopter</div><h2>Ingenuity</h2><p>Görev detayları için tıklayın.</p></a>
-        <a class="card" href="opportunity/"><div class="tag">Rover</div><h2>Opportunity</h2><p>Görev detayları için tıklayın.</p></a>
-        <a class="card" href="sojourner/"><div class="tag">Rover</div><h2>Sojourner</h2><p>Görev detayları için tıklayın.</p></a>
-        <a class="card" href="spirit/"><div class="tag">Rover</div><h2>Spirit</h2><p>Görev detayları için tıklayın.</p></a>
+        <a class="card" href="perseverance/"><div class="tag">Rover</div><h2>Perseverance</h2><p>3D görünüm için тıklayın.</p></a>
+        <a class="card" href="curiosity/"><div class="tag">Rover</div><h2>Curiosity</h2><p>3D görünüm için тıklayın.</p></a>
+        <a class="card" href="ingenuity/"><div class="tag">Helikopter</div><h2>Ingenuity</h2><p>Görev detayları için тıklayın.</p></a>
+        <a class="card" href="opportunity/"><div class="tag">Rover</div><h2>Opportunity</h2><p>Görev detayları için тıklayın.</p></a>
+        <a class="card" href="sojourner/"><div class="tag">Rover</div><h2>Sojourner</h2><p>Görev detayları için тıklayın.</p></a>
+        <a class="card" href="spirit/"><div class="tag">Rover</div><h2>Spirit</h2><p>Görev detayları için тıklayın.</p></a>
 
-        <a class="card" href="zhurong/"><div class="tag">Rover</div><h2>Zhurong</h2><p>3D görünüm için tıklayın.</p></a>
+        <a class="card" href="zhurong/"><div class="tag">Rover</div><h2>Zhurong</h2><p>3D görünüm için тıklayın.</p></a>
 
       </section>
 
-      <!-- ————————————————————————————————
-          FOOTER (React → HTML dönüştürüldü)
-          ———————————————————————————————— -->
+      <!-- FOOTER с таким же набором иконок -->
       <footer>
         <div class="footer-grid">
 
@@ -326,11 +387,29 @@
           </div>
 
           <!-- Column 2 — Social + Email -->
-          <div class="footer-social-area">
-            <div class="footer-social" style="margin-bottom:15px;">
-              <a href="#" title="Instagram">📸</a>
-              <a href="#" title="LinkedIn">💼</a>
-              <a href="#" title="X / Twitter">✖️</a>
+          <div>
+            <div class="footer-social">
+              <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                <svg class="social-icon-svg" viewBox="0 0 24 24">
+                  <rect x="4" y="4" width="16" height="16" rx="5" ry="5"></rect>
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <circle cx="17" cy="7" r="1.2"></circle>
+                </svg>
+              </a>
+              <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                <svg class="social-icon-svg" viewBox="0 0 24 24">
+                  <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                  <line x1="8" y1="10" x2="8" y2="16"></line>
+                  <circle cx="8" cy="8" r="1"></circle>
+                  <path d="M12 16v-3.5a2 2 0 0 1 4 0V16"></path>
+                </svg>
+              </a>
+              <a href="https://x.com" aria-label="X" target="_blank" rel="noopener noreferrer">
+                <svg class="social-icon-svg" viewBox="0 0 24 24">
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                </svg>
+              </a>
             </div>
 
             <div class="footer-contacts">
@@ -343,7 +422,7 @@
           <div class="footer-address">
             YETSAN Karşıyaka İş Merkezi G Blok No: 26<br>
             Sarıçam / ADANA<br>
-            <a href="tel:+905387781018" style="color:#9ca3af;">+90 538 778 10 18</a>
+            <a href="tel:+905387781018">+90 538 778 10 18</a>
           </div>
 
         </div>
