@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AlbaSpace – About Us</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root {
+      --header-bg: #020617;
+      --accent: #00c2ff;
+      --page-bg: #ffffff;
+      --text-main: #111827;
+      --text-muted: #4b5563;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--page-bg);
+      color: var(--text-main);
+    }
+
+    /* HEADER */
+    .site-header {
+      width: 100%;
+      background: var(--header-bg);
+      color: #e5e7eb;
+      border-bottom: 1px solid #0f172a;
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .header-logo {
+      display:flex;
+      align-items:center;
+      gap:8px;
+      text-decoration:none;
+      color:#e5e7eb;
+    }
+    .header-logo img {
+      width:40px; height:40px;
+      border-radius:999px;
+      background:#0f172a;
+      padding:4px;
+    }
+    .header-logo span {
+      font-weight:600;
+      font-size:16px;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+    }
+    .main-nav {
+      margin-left:20px;
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+      font-size:14px;
+    }
+    .main-nav a {
+      color:#d1d5db;
+      text-decoration:none;
+      position:relative;
+      padding-bottom:2px;
+    }
+    .main-nav a:hover { color:#ffffff; }
+    .main-nav a.active {
+      color:#ffffff;
+    }
+    .main-nav a.active::after {
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-2px;
+      width:100%;
+      height:2px;
+      background:var(--accent);
+      border-radius:999px;
+    }
+
+    .header-social {
+      display:flex;
+      gap:14px;
+      margin-left:auto;
+    }
+    .social-icon-svg {
+      width:22px;
+      height:22px;
+      fill:none;
+      stroke:#e5e7eb;
+      stroke-width:1.6;
+      transition:stroke 0.2s, transform 0.15s;
+    }
+    .header-social a:hover .social-icon-svg,
+    .footer-social a:hover .social-icon-svg {
+      stroke:#ffffff;
+      transform:translateY(-1px);
+    }
+
+    .top-lang-switch {
+      display:flex;
+      gap:6px;
+      align-items:center;
+      font-size:13px;
+      margin-left:10px;
+    }
+    .top-lang-switch a {
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid #4b5563;
+      background:#020617;
+      color:#e5e7eb;
+      text-decoration:none;
+    }
+    .top-lang-switch a.active {
+      background:#e5e7eb;
+      color:#020617;
+      font-weight:600;
+    }
+
+    /* PAGE WRAPPER */
+    .page-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px 70px;
+    }
+
+    /* COVER IMAGE */
+    .cover img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 40px;
+    }
+
+    /* TEXT SECTION */
+    .about-text {
+      font-size: 17px;
+      line-height: 1.6;
+      margin-bottom: 50px;
+      white-space: pre-line;
+    }
+
+    /* TEAM */
+    .team-title {
+      font-size: 28px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+    .team-card {
+      text-align: center;
+      padding: 20px;
+      border-radius: 16px;
+      background: #f3f4f6;
+    }
+    .team-card img {
+      width: 130px;
+      height: 130px;
+      object-fit: cover;
+      border-radius: 100px;
+      margin-bottom: 14px;
+    }
+    .team-card h3 { font-size: 18px; margin-bottom: 4px; }
+    .team-card p { font-size: 14px; color: var(--text-muted); }
+
+    /* FOOTER */
+    footer.footer {
+      background:#111827;
+      color:#d1d5db;
+      padding:34px 20px;
+      font-size:14px;
+    }
+    .footer-grid {
+      max-width:1200px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:20px;
+      text-align:center;
+    }
+    .footer-logo img {
+      width:60px;
+      height:60px;
+      background:#0f172a;
+      padding:4px;
+      border-radius:999px;
+    }
+    .footer-social {
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      margin-bottom:8px;
+    }
+    .footer-address p,
+    .footer-center p { margin-bottom:4px; }
+
+    @media (max-width: 900px) {
+      .header-inner { flex-wrap:wrap; }
+      .main-nav { margin-left:0; justify-content:center; }
+      .header-social { margin-left:0; }
+      .footer-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+
+    <a href="anasayfa-en.html" class="header-logo">
+      <img src="https://albaspace.com.tr/assets/images/albalogo.png" alt="AlbaSpace Logo" />
+      <span>AlbaSpace</span>
+    </a>
+
+    <nav class="main-nav">
+      <a href="anasayfa-en.html">HOME</a>
+      <a href="index.html">ATLAS</a>
+      <a href="hakkimizda-en.html" class="active">ABOUT</a>
+      <a href="hizmetler-en.html">SERVICES</a>
+      <a href="shop-en.html">SHOP</a>
+      <a href="blog-en.html">BLOG</a>
+      <a href="basindabiz-en.html">PRESS</a>
+      <a href="galeri-en.html">GALLERY</a>
+      <a href="iletisim-en.html">CONTACT</a>
+      <a href="dfs-en.html">DFS</a>
+    </nav>
+
+    <div class="header-social">
+      <a href="https://www.instagram.com/albaspace_/" target="_blank" aria-label="Instagram">
+        <svg class="social-icon-svg" viewBox="0 0 24 24">
+          <rect x="4" y="4" width="16" height="16" rx="5"></rect>
+          <circle cx="12" cy="12" r="4"></circle>
+          <circle cx="17" cy="7" r="1.2"></circle>
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com/in/idrisalbayrak/" target="_blank" aria-label="LinkedIn">
+        <svg class="social-icon-svg" viewBox="0 0 24 24">
+          <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+          <line x1="8" y1="10" x2="8" y2="16"></line>
+          <circle cx="8" cy="8" r="1"></circle>
+          <path d="M12 16v-3.5a2 2 0 0 1 4 0V16"></path>
+        </svg>
+      </a>
+      <a href="https://x.com/" target="_blank" aria-label="X">
+        <svg class="social-icon-svg" viewBox="0 0 24 24">
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+        </svg>
+      </a>
+    </div>
+
+    <div class="top-lang-switch">
+      <a href="hakkimizda.html">TR</a>
+      <a href="hakkimizda-en.html" class="active">EN</a>
+    </div>
+
+  </div>
+</header>
+
+<div class="page-wrapper">
+
+  <!-- COVER -->
+  <div class="cover">
+    <!-- ту же картинку можешь использовать, что и в TR-версии -->
+    <img src="assets/images/hakkimizda-cover.jpg" alt="About AlbaSpace">
+  </div>
+
+  <!-- ABOUT TEXT -->
+  <div class="about-text">
+Founded in 2022 in Türkiye, **ALBA SPACE** is the first and only space-technology initiative in the country that sends brands to space and conducts scientific experiments in the stratosphere.
+
+With its professional and specialised team, Alba Space plays an important role in shaping the future in a positive way through social responsibility and awareness projects in the field of space technologies, prioritising the health of future generations and our planet based on a carbon-neutral principle.
+  </div>
+
+  <!-- TEAM -->
+  <h2 class="team-title">OUR TEAM</h2>
+
+  <div class="team-grid">
+
+    <div class="team-card">
+      <img src="assets/images/team-idris.jpg" alt="Idris Albayrak">
+      <h3>İdris ALBAYRAK</h3>
+      <p>Founder & General Coordinator</p>
+    </div>
+
+
+    <div class="team-card">
+      <img src="assets/images/team-ahmet-selcuk.jpg" alt="Ahmet Selçuk Değirmen">
+      <h3>Ahmet Selçuk DEĞİRMEN</h3>
+      <p>Social Media Specialist</p>
+    </div>
+
+    <div class="team-card">
+      <img src="assets/images/team-nick.jpg" alt="Nick Nesterenko">
+      <h3>Nick NESTERENKO</h3>
+      <p> Computer Graphics Artist </p>
+    </div> 
+
+    <div class="team-card">
+      <img src="assets/images/team-ayse.jpg" alt="Dr. Ayşe Nuran Çil">
+      <h3>Dr. Ayşe Nuran ÇİL</h3>
+      <p>Scientific Advisor</p>
+    </div>
+
+    <div class="team-card">
+      <img src="assets/images/team-merve.jpg" alt="Merve Balaban">
+      <h3>Merve BALABAN</h3>
+      <p>Scientific Advisor</p>
+    </div>
+
+    <div class="team-card">
+      <img src="assets/images/team-duringa.jpg" alt="Ahmet Duringa">
+      <h3>Ahmet DURİNGA</h3>
+      <p>AI Specialist</p>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+
+    <div class="footer-logo">
+      <img src="https://albaspace.com.tr/assets/images/albalogo.png" alt="AlbaSpace Logo">
+      <p>Take Your Future to Space!</p>
+    </div>
+
+    <div class="footer-center">
+      <div class="footer-social">
+        <a href="https://www.instagram.com/albaspace_/" target="_blank" aria-label="Instagram">
+          <svg class="social-icon-svg" viewBox="0 0 24 24">
+            <rect x="4" y="4" width="16" height="16" rx="5"></rect>
+            <circle cx="12" cy="12" r="4"></circle>
+            <circle cx="17" cy="7" r="1.2"></circle>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/idrisalbayrak/" target="_blank" aria-label="LinkedIn">
+          <svg class="social-icon-svg" viewBox="0 0 24 24">
+            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+            <line x1="8" y1="10" x2="8" y2="16"></line>
+            <circle cx="8" cy="8" r="1"></circle>
+            <path d="M12 16v-3.5a2 2 0 0 1 4 0V16"></path>
+          </svg>
+        </a>
+        <a href="https://x.com/" target="_blank" aria-label="X">
+          <svg class="social-icon-svg" viewBox="0 0 24 24">
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+          </svg>
+        </a>
+      </div>
+      <p>idris@albaspace.com.tr</p>
+      <p>hello@albaspace.com.tr</p>
+    </div>
+
+    <div class="footer-address">
+      <p>YETSAN Karşıyaka İş Merkezi G Blok No: 26</p>
+      <p>Sarıçam / ADANA</p>
+      <p>+90 538 778 10 18</p>
+    </div>
+
+  </div>
+</footer>
+
+</body>
+</html>
