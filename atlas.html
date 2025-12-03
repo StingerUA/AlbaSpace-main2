@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>ALBASPACE – Uzay Atlası</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    :root {
+      --header-bg:#020617;
+      --accent:#00c2ff;
+      --page-bg:#020617;
+      --text-main:#f9fafb;
+      --text-muted:#9ca3af;
+    }
+
+    * {
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body {
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:#020617 url("assets/images/space-bg.jpg") center/cover fixed no-repeat;
+      color:var(--text-main);
+    }
+
+    /* ---------- HEADER ---------- */
+
+    .site-header {
+      width:100%;
+      background:var(--header-bg);
+      color:#e5e7eb;
+      border-bottom:1px solid #0f172a;
+    }
+
+    .header-inner {
+      max-width:1200px;
+      margin:0 auto;
+      padding:10px 20px;
+      display:flex;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .header-logo {
+      display:flex;
+      align-items:center;
+      gap:8px;
+      text-decoration:none;
+      color:#e5e7eb;
+    }
+
+    .header-logo img {
+      width:40px;
+      height:40px;
+      border-radius:999px;
+      background:#0f172a;
+      padding:4px;
+    }
+
+    .header-logo span {
+      font-weight:600;
+      font-size:16px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .main-nav {
+      margin-left:20px;
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+      font-size:14px;
+    }
+
+    .main-nav a {
+      color:#d1d5db;
+      text-decoration:none;
+      position:relative;
+      padding-bottom:2px;
+    }
+
+    .main-nav a:hover {
+      color:#ffffff;
+    }
+
+    .main-nav a.active::after {
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-2px;
+      width:100%;
+      height:2px;
+      background:var(--accent);
+      border-radius:999px;
+    }
+
+    .header-social {
+      display:flex;
+      gap:14px;
+      margin-left:auto;
+      margin-right:10px;
+    }
+
+    .social-icon-svg {
+      width:22px;
+      height:22px;
+      fill:none;
+      stroke:#e5e7eb;
+      stroke-width:1.6;
+      transition:stroke .2s,transform .15s;
+    }
+
+    .header-social a:hover .social-icon-svg,
+    .footer-social a:hover .social-icon-svg {
+      stroke:#ffffff;
+      transform:translateY(-1px);
+    }
+
+    .top-lang-switch {
+      display:flex;
+      gap:6px;
+      align-items:center;
+      font-size:13px;
+    }
+
+    .top-lang-switch a {
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid #4b5563;
+      background:#020617;
+      color:#e5e7eb;
+      text-decoration:none;
+    }
+
+    .top-lang-switch a.active {
+      background:#e5e7eb;
+      color:#020617;
+      font-weight:600;
+    }
+
+    /* ---------- ATLAS LAYOUT ---------- */
+
+    .atlas-shell {
+      max-width:1100px;
+      margin:40px auto 70px;
+      padding:0 16px;
+    }
+
+    .atlas-inner {
+      background:radial-gradient(circle at top,rgba(56,189,248,0.18),transparent 55%);
+      padding:1px;
+      border-radius:26px;
+      box-shadow:0 28px 90px rgba(0,0,0,0.85);
+    }
+
+    .atlas-inner-core {
+      background:rgba(15,23,42,0.94);
+      border-radius:25px;
+      padding:22px 20px 30px;
+      border:1px solid rgba(148,163,184,0.5);
+      backdrop-filter:blur(20px);
+    }
+
+    .atlas-hero-label {
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:0.16em;
+      color:#a5b4fc;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      margin-bottom:4px;
+    }
+
+    .atlas-hero-label::before {
+      content:"●";
+      font-size:10px;
+      color:#22c55e;
+    }
+
+    .atlas-hero-title {
+      font-size:22px;
+      margin-bottom:4px;
+    }
+
+    .atlas-hero-sub {
+      font-size:13px;
+      color:#cbd5f5;
+      margin-bottom:16px;
+    }
+
+    .atlas-intro {
+      font-size:13px;
+      color:#d1d5db;
+      margin-bottom:18px;
+      line-height:1.5;
+    }
+
+    .filters {
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+      margin-bottom:16px;
+      font-size:12px;
+    }
+
+    .filters span.label {
+      color:#9ca3af;
+    }
+
+    .chip {
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.5);
+      background:rgba(15,23,42,0.9);
+      color:#e5e7eb;
+      cursor:pointer;
+      transition:background .15s,border-color .15s,transform .1s;
+    }
+
+    .chip:hover {
+      background:rgba(30,64,175,0.8);
+      border-color:rgba(96,165,250,0.9);
+      transform:translateY(-1px);
+    }
+
+    .chip.active {
+      background:linear-gradient(135deg,#0ea5e9,#22c55e);
+      border-color:transparent;
+      color:#020617;
+      font-weight:600;
+    }
+
+    section.grid {
+      margin-top:10px;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:10px;
+    }
+
+    @media (max-width:900px){
+      section.grid {
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+    }
+
+    @media (max-width:600px){
+      section.grid {
+        grid-template-columns:repeat(1,minmax(0,1fr));
+      }
+    }
+
+    .card {
+      position:relative;
+      border-radius:18px;
+      padding:14px 12px 12px;
+      background:radial-gradient(circle at top left,rgba(59,130,246,0.12),transparent 60%),
+                 radial-gradient(circle at bottom right,rgba(236,72,153,0.18),transparent 60%),
+                 rgba(15,23,42,0.96);
+      border:1px solid rgba(148,163,184,0.45);
+      text-decoration:none;
+      color:inherit;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      transition:transform .15s,box-shadow .15s,border-color .15s,background .15s;
+    }
+
+    .card:hover {
+      transform:translateY(-4px);
+      box-shadow:0 18px 50px rgba(15,23,42,0.9);
+      border-color:rgba(129,140,248,0.9);
+      background:radial-gradient(circle at top left,rgba(56,189,248,0.22),transparent 60%),
+                 radial-gradient(circle at bottom right,rgba(236,72,153,0.24),transparent 60%),
+                 rgba(15,23,42,0.99);
+    }
+
+    .card .tag {
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:0.16em;
+      color:#a5b4fc;
+    }
+
+    .card h2 {
+      font-size:15px;
+      font-weight:600;
+      color:#e5e7eb;
+    }
+
+    .card p {
+      font-size:12px;
+      color:#cbd5f5;
+      line-height:1.5;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer.footer {
+      background:#111827;
+      color:#d1d5db;
+      padding:34px 20px;
+      font-size:14px;
+    }
+
+    .footer-grid {
+      max-width:1200px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:20px;
+      text-align:center;
+    }
+
+    .footer-logo img {
+      width:60px;
+      height:60px;
+      background:#0f172a;
+      padding:4px;
+      border-radius:999px;
+    }
+
+    .footer-social {
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      margin-bottom:8px;
+    }
+
+    .footer-address p,
+    .footer-center p {
+      margin-bottom:4px;
+    }
+
+    @media (max-width:900px){
+      .footer-grid {
+        grid-template-columns:1fr;
+      }
+      .header-inner {
+        justify-content:center;
+      }
+      .header-social {
+        margin-left:0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ГЛОБАЛЬНЫЙ ХЭДЕР -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo">
+        <img src="assets/images/albalogo.png" alt="AlbaSpace Logo">
+        <span>AlbaSpace</span>
+      </a>
+
+      <nav class="main-nav">
+        <a href="index.html">ANASAYFA</a>
+        <a href="atlas.html" class="active">ATLAS</a>
+        <a href="hakkimizda.html">HAKKIMIZDA</a>
+        <a href="hizmetler.html">HİZMETLER</a>
+        <a href="shop.html">SHOP</a>
+        <a href="blog.html">BLOG</a>
+        <a href="basindabiz.html">BASINDA BİZ</a>
+        <a href="galeri.html">GALERİ</a>
+        <a href="iletisim.html">İLETİŞİM</a>
+        <a href="dfs.html">DFS</a>
+      </nav>
+
+      <div class="header-social">
+        <a href="https://www.instagram.com/albaspace_/" target="_blank" aria-label="Instagram">
+          <svg class="social-icon-svg" viewBox="0 0 24 24">
+            <rect x="4" y="4" width="16" height="16" rx="5"></rect>
+            <circle cx="12" cy="12" r="4"></circle>
+            <circle cx="17" cy="7" r="1.2"></circle>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/idrisalbayrak/" target="_blank" aria-label="LinkedIn">
+          <svg class="social-icon-svg" viewBox="0 0 24 24">
+            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+            <line x1="8" y1="10" x2="8" y2="16"></line>
+            <circle cx="8" cy="8" r="1"></circle>
+            <path d="M12 16v-3.5a2 2 0 0 1 4 0V16"></path>
+          </svg>
+        </a>
+        <a href="https://x.com/" target="_blank" aria-label="X">
+          <svg class="social-icon-svg" viewBox="0 0 24 24">
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+          </svg>
+        </a>
+      </div>
+
+      <div class="top-lang-switch">
+        <a href="atlas.html" class="active">TR</a>
+        <a href="atlas-en.html">EN</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- КОНТЕНТ ATLAS -->
+  <div class="atlas-shell">
+    <div class="atlas-inner">
+      <div class="atlas-inner-core">
+
+        <section class="atlas-hero">
+          <div class="atlas-hero-label">ALBASPACE</div>
+          <h1 class="atlas-hero-title">Etkileşimli Uzay Atlası</h1>
+          <p class="atlas-hero-sub">Türk uyduları, gezegenler ve Mars görevlerinin 3D galerisidir.</p>
+        </section>
+
+        <p class="atlas-intro">
+          Alba Space koleksiyonundaki Türk uydularını, gezegenleri ve Mars keşif araçlarını keşfedin.
+          Her kart, ilgili objenin özel 3D sayfasını açar.
+        </p>
+
+        <div class="filters">
+          <span class="label">Kategoriler:</span>
+          <div class="chip active">Tümü</div>
+          <div class="chip">Türk Uyduları</div>
+          <div class="chip">Gezegenler</div>
+          <div class="chip">Mars Araçları</div>
+          <div class="chip">Teleskoplar &amp; Problar</div>
+        </div>
+
+        <!-- КАРТОЧКИ -->
+        <section class="grid">
+
+          <!-- Turkish Satellites -->
+          <a class="card" href="gokturk-1/"><div class="tag">Uydu</div><h2>GÖKTÜRK-1</h2><p>Ayrıntılı bilgi için tıklayın.</p></a>
+          <a class="card" href="gokturk-2/"><div class="tag">Uydu</div><h2>GÖKTÜRK-2</h2><p>Ayrıntılı bilgi için tıklayın.</p></a>
+          <a class="card" href="rasat/"><div class="tag">Uydu</div><h2>RASAT</h2><p>Ayrıntılı bilgi için tıklayın.</p></a>
+          <a class="card" href="imece/"><div class="tag">Uydu</div><h2>İMECE</h2><p>Ayrıntılı bilgi için tıklayın.</p></a>
+          <a class="card" href="turksat-1A/"><div class="tag">Uydu</div><h2>TÜRKSAT 1A</h2><p>Ayrıntılı bilgi için tıklayın.</p></a>
+          <a class="card" href="turksat-1B/"><div class="tag">Uydu</div><h2>TÜRKSAT 1B</h2><p>Ayrıntılı bilgi için tıklayın.</p></a>
+          <a class="card" href="turksat-1C/"><div class="tag">Uydu</div><h2>TÜRKSAT 1C</h2><p>Ayrıntılı bilgi için tıklayın.</p></a>
+          <a class="card" href="turksat-2A/"><div class="tag">Uydu</div><h2>TÜRKSAT 2A</h2><p>Ayrıntılı bilgi için tıklayın.</p></a>
+          <a class="card" href="turksat-3A/"><div class="tag">Uydu</div><h2>TÜRKSAT 3A</h2><p>Ayrıntılı bilgi için tıklayın.</p></a>
+          <a class="card" href="turksat-3B/"><div class="tag">Uydu</div><h2>TÜRKSAT 3B</h2><p>Ayrıntılı bilgi için tıklayın.</p></a>
+          <a class="card" href="turksat-4A/"><div class="tag">Uydu</div><h2>TÜRKSAT 4A</h2><p>Ayrıntılı bilgi için tıklayın.</p></a>
+          <a class="card" href="turksat-5A/"><div class="tag">Uydu</div><h2>TÜRKSAT 5A</h2><p>Ayrıntılı bilgi için tıklayın.</p></a>
+          <a class="card" href="turksat-5B/"><div class="tag">Uydu</div><h2>TÜRKSAT 5B</h2><p>Ayrıntılı bilgi için tıklayın.</p></a>
+          <a class="card" href="turksat-6A/"><div class="tag">Uydu</div><h2>TÜRKSAT 6A</h2><p>Ayrıntılı bilgi için tıklayın.</p></a>
+          <a class="card" href="lagari/"><div class="tag">Uydu</div><h2>Lagari</h2><p>Ayrıntılı bilgi için tıklayın.</p></a>
+
+          <!-- Space Station -->
+          <a class="card" href="iss/"><div class="tag">İstasyon</div><h2>Uluslararası Uzay İstasyonu</h2><p>3D görünüm için tıklayın.</p></a>
+
+          <!-- Planets -->
+          <a class="card" href="mercury/"><div class="tag">Gezegen</div><h2>Merkür</h2><p>3D görünüm için tıklayın.</p></a>
+          <a class="card" href="venus/"><div class="tag">Gezegen</div><h2>Venüs</h2><p>3D görünüm için tıklayın.</p></a>
+          <a class="card" href="earth/"><div class="tag">Gezegen</div><h2>Dünya</h2><p>3D görünüm için tıklayın.</p></a>
+          <a class="card" href="mars/"><div class="tag">Gezegen</div><h2>Mars</h2><p>3D görünüm için tıklayın.</p></a>
+          <a class="card" href="jupiter/"><div class="tag">Gezegen</div><h2>Jüpiter</h2><p>3D görünüm için tıklayın.</p></a>
+          <a class="card" href="saturn/"><div class="tag">Gezegen</div><h2>Satürn</h2><p>3D görünüm için tıklayın.</p></a>
+          <a class="card" href="uranus/"><div class="tag">Gezegen</div><h2>Uranüs</h2><p>3D görünüm için тıklayın.</p></a>
+          <a class="card" href="neptune/"><div class="tag">Gezegen</div><h2>Neptün</h2><p>3D görünüm için тıklayın.</p></a>
+
+          <!-- Probes / telescopes -->
+          <a class="card" href="sputnik/"><div class="tag">Uydu</div><h2>Sputnik</h2><p>3D görünüm için тıklayın.</p></a>
+          <a class="card" href="voyager1/"><div class="tag">Sonda</div><h2>Voyager 1</h2><p>3D görünüm için тıklayın.</p></a>
+          <a class="card" href="voyager2/"><div class="tag">Sonda</div><h2>Voyager 2</h2><p>3D görünüm için тıklayın.</p></a>
+          <a class="card" href="hubble/"><div class="tag">Teleskop</div><h2>Hubble Uzay Teleskobu</h2><p>3D görünüm için тıklayın.</p></a>
+          <a class="card" href="jameswebb/"><div class="tag">Teleskop</div><h2>James Webb Uzay Teleskobu</h2><p>3D görünüm için тıklayın.</p></a>
+          <a class="card" href="kepler/"><div class="tag">Teleskop</div><h2>Kepler Uzay Teleskobu</h2><p>3D görünüm için тıklayın.</p></a>
+          <a class="card" href="exomars/"><div class="tag">Görev</div><h2>ExoMars</h2><p>Görev detayları için тıklayın.</p></a>
+          <a class="card" href="marsodyssey/"><div class="tag">Görev</div><h2>Mars Odyssey</h2><p>Görev detayları için тıklayın.</p></a>
+          <a class="card" href="marsreconnaissance/"><div class="tag">Görev</div><h2>Mars Reconnaissance Orbiter</h2><p>Görev detayları için тıklayın.</p></a>
+
+          <!-- Mars Rovers -->
+          <a class="card" href="perseverance/"><div class="tag">Rover</div><h2>Perseverance</h2><p>3D görünüm için тıklayın.</p></a>
+          <a class="card" href="curiosity/"><div class="tag">Rover</div><h2>Curiosity</h2><p>3D görünüm için тıklayın.</p></a>
+          <a class="card" href="ingenuity/"><div class="tag">Helikopter</div><h2>Ingenuity</h2><p>Görev detayları için тıklayın.</p></a>
+          <a class="card" href="opportunity/"><div class="tag">Rover</div><h2>Opportunity</h2><p>Görev detayları için тıklayın.</p></a>
+          <a class="card" href="sojourner/"><div class="tag">Rover</div><h2>Sojourner</h2><p>Görev detayları için тıklayın.</p></a>
+          <a class="card" href="spirit/"><div class="tag">Rover</div><h2>Spirit</h2><p>Görev detayları için тıklayın.</p></a>
+          <a class="card" href="zhurong/"><div class="tag">Rover</div><h2>Zhurong</h2><p>3D görünüm için тıklayın.</p></a>
+
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ГЛОБАЛЬНЫЙ ФУТЕР -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-logo">
+        <img src="assets/images/albalogo.png" alt="AlbaSpace Logo">
+        <p>Geleceğinizi Uzaya Taşıyın!</p>
+      </div>
+
+      <div class="footer-center">
+        <div class="footer-social">
+          <a href="https://www.instagram.com/albaspace_/" target="_blank" aria-label="Instagram">
+            <svg class="social-icon-svg" viewBox="0 0 24 24">
+              <rect x="4" y="4" width="16" height="16" rx="5"></rect>
+              <circle cx="12" cy="12" r="4"></circle>
+              <circle cx="17" cy="7" r="1.2"></circle>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/idrisalbayrak/" target="_blank" aria-label="LinkedIn">
+            <svg class="social-icon-svg" viewBox="0 0 24 24">
+              <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+              <line x1="8" y1="10" x2="8" y2="16"></line>
+              <circle cx="8" cy="8" r="1"></circle>
+              <path d="M12 16v-3.5a2 2 0 0 1 4 0V16"></path>
+            </svg>
+          </a>
+          <a href="https://x.com/" target="_blank" aria-label="X">
+            <svg class="social-icon-svg" viewBox="0 0 24 24">
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+            </svg>
+          </a>
+        </div>
+
+        <p>idris@albaspace.com.tr</p>
+        <p>hello@albaspace.com.tr</p>
+      </div>
+
+      <div class="footer-address">
+        <p>YETSAN Karşıyaka İş Merkezi G Blok No: 26</p>
+        <p>Sarıçam / ADANA</p>
+        <p>+90 538 778 10 18</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
