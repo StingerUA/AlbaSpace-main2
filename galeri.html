@@ -1,1 +1,257 @@
-<html><body>gallery tr</body></html>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>AlbaSpace – Galeri</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:#ffffff;
+  color:#111827;
+}
+.site-header{
+  background:#020617;
+  color:#e5e7eb;
+  border-bottom:1px solid #0f172a;
+}
+.header-inner{
+  max-width:1200px;
+  margin:0 auto;
+  padding:10px 20px;
+  display:flex;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.header-logo{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  text-decoration:none;
+  color:#e5e7eb;
+}
+.header-logo img{
+  width:40px;height:40px;
+  border-radius:999px;
+  background:#0f172a;
+  padding:4px;
+}
+.header-logo span{
+  font-weight:600;
+  font-size:16px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.main-nav{
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+  font-size:14px;
+  margin-left:20px;
+}
+.main-nav a{
+  color:#d1d5db;
+  text-decoration:none;
+  padding-bottom:2px;
+  position:relative;
+}
+.main-nav a:hover,
+.main-nav a.active{
+  color:#ffffff;
+}
+.main-nav a.active::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-2px;
+  width:100%;
+  height:2px;
+  background:#00c2ff;
+  border-radius:999px;
+}
+.header-social{
+  margin-left:auto;
+  display:flex;
+  gap:14px;
+}
+.social-icon-svg{
+  width:22px;
+  height:22px;
+  fill:none;
+  stroke:#e5e7eb;
+  stroke-width:1.6;
+}
+.top-lang-switch{
+  display:flex;
+  gap:6px;
+  align-items:center;
+  margin-left:10px;
+  font-size:13px;
+}
+.top-lang-switch a{
+  padding:4px 10px;
+  border-radius:999px;
+  border:1px solid #4b5563;
+  background:#020617;
+  color:#e5e7eb;
+  text-decoration:none;
+}
+.top-lang-switch a.active{
+  background:#e5e7eb;
+  color:#020617;
+  font-weight:600;
+}
+.page-wrapper{
+  max-width:900px;
+  margin:50px auto 70px;
+  padding:0 20px;
+  text-align:center;
+}
+.page-wrapper img.hero{
+  max-width:420px;
+  width:100%;
+  border-radius:20px;
+  margin-bottom:24px;
+  box-shadow:0 8px 26px rgba(0,0,0,0.28);
+}
+.page-title{
+  font-size:32px;
+  margin-bottom:6px;
+}
+.page-sub{
+  font-size:14px;
+  color:#4b5563;
+  margin-bottom:24px;
+}
+.coming-title{
+  font-size:42px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:2px;
+}
+footer.footer{
+  background:#111827;
+  color:#d1d5db;
+  padding:26px 20px;
+  font-size:13px;
+}
+.footer-grid{
+  max-width:1200px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:20px;
+  text-align:center;
+}
+.footer-logo img{
+  width:52px;height:52px;
+  border-radius:999px;
+  background:#0f172a;
+  padding:4px;
+}
+.footer-social{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  margin-bottom:6px;
+}
+.footer-address p,
+.footer-center p{
+  margin:2px 0;
+}
+@media(max-width:900px){
+  .footer-grid{grid-template-columns:1fr;}
+  .header-inner{justify-content:center;}
+  .header-social{margin-left:0;}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="anasayfa.html" class="header-logo">
+      <img src="assets/images/albalogo.png" alt="AlbaSpace Logo">
+      <span>AlbaSpace</span>
+    </a>
+    <nav class="main-nav">
+      <a href="anasayfa.html" class="">ANASAYFA</a><a href="index.html" class="">ATLAS</a><a href="hakkimizda.html" class="">HAKKIMIZDA</a><a href="hizmetler.html" class="">HİZMETLER</a><a href="shop.html" class="">SHOP</a><a href="blog.html" class="">BLOG</a><a href="basindabiz.html" class="">BASINDA BİZ</a><a href="galeri.html" class="active">GALERİ</a><a href="iletisim.html" class="">İLETİŞİM</a><a href="dfs.html" class="">DFS</a>
+    </nav>
+    <div class="header-social">
+      <a href="https://www.instagram.com/albaspace_/" target="_blank">
+        <svg class="social-icon-svg" viewBox="0 0 24 24">
+          <rect x="4" y="4" width="16" height="16" rx="5"></rect>
+          <circle cx="12" cy="12" r="4"></circle>
+          <circle cx="17" cy="7" r="1.2"></circle>
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com/in/idrisalbayrak/" target="_blank">
+        <svg class="social-icon-svg" viewBox="0 0 24 24">
+          <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+          <line x1="8" y1="10" x2="8" y2="16"></line>
+          <circle cx="8" cy="8" r="1"></circle>
+          <path d="M12 16v-3.5a2 2 0 0 1 4 0V16"></path>
+        </svg>
+      </a>
+      <a href="https://x.com/" target="_blank">
+        <svg class="social-icon-svg" viewBox="0 0 24 24">
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+        </svg>
+      </a>
+    </div>
+    <div class="top-lang-switch">
+      <a href="galeri.html" class="active">TR</a><a href="galeri-en.html">EN</a>
+    </div>
+  </div>
+</header>
+
+<div class="page-wrapper">
+<h1 class="page-title">Galeri</h1><p class="page-sub">Uçuşlarımızdan ve VR atölyelerimizden kareler.</p><img src="assets/images/gallery-1.jpg" class="hero" alt="Galeri">
+</div>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-logo">
+      <img src="assets/images/albalogo.png" alt="AlbaSpace Logo">
+      <p>Geleceğinizi Uzaya Taşıyın!</p>
+    </div>
+    <div class="footer-center">
+      <div class="footer-social">
+        <a href="https://www.instagram.com/albaspace_/" target="_blank">
+          <svg class="social-icon-svg" viewBox="0 0 24 24">
+            <rect x="4" y="4" width="16" height="16" rx="5"></rect>
+            <circle cx="12" cy="12" r="4"></circle>
+            <circle cx="17" cy="7" r="1.2"></circle>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/idrisalbayrak/" target="_blank">
+          <svg class="social-icon-svg" viewBox="0 0 24 24">
+            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+            <line x1="8" y1="10" x2="8" y2="16"></line>
+            <circle cx="8" cy="8" r="1"></circle>
+            <path d="M12 16v-3.5a2 2 0 0 1 4 0V16"></path>
+          </svg>
+        </a>
+        <a href="https://x.com/" target="_blank">
+          <svg class="social-icon-svg" viewBox="0 0 24 24">
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+          </svg>
+        </a>
+      </div>
+      <p>idris@albaspace.com.tr</p>
+      <p>hello@albaspace.com.tr</p>
+    </div>
+    <div class="footer-address">
+      <p>YETSAN Karşıyaka İş Merkezi G Blok No: 26</p>
+      <p>Sarıçam / ADANA</p>
+      <p>+90 538 778 10 18</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
