@@ -191,9 +191,6 @@
       transition:max-height .3s ease;
       background:#f9fafb;
     }
-    .folder.open .folder-body{
-      /* max-height will be set из JS по содержимому */
-    }
 
     /* ---------- IMAGE GRID ---------- */
     .thumb-grid{
@@ -322,18 +319,17 @@
 
     <div class="folders">
 
-      <!-- 1. Stratosfer Uçuşları: 1–6 -->
+      <!-- 1. Stratosfer Uçuşları: 1–14 -->
       <div class="folder open">
         <div class="folder-header">
           <div>
             <div class="folder-title">Stratosfer Uçuşları</div>
-            <div class="folder-count">14</div>
+            <div class="folder-count">14 fotoğraf</div>
           </div>
           <div class="folder-toggle-icon">−</div>
         </div>
         <div class="folder-body">
           <div class="thumb-grid">
-            <!-- картинки 1–6 -->
             <div class="thumb">
               <img src="assets/images/1.jpg" alt="1">
               <span>1</span>
@@ -380,50 +376,8 @@
             </div>
             <div class="thumb">
               <img src="assets/images/12.jpg" alt="12">
-              <span>12</span>          
+              <span>12</span>
             </div>
-            <div class="thumb">
-              <img src="assets/images/13.jpg" alt="13">
-              <span>12</span>          
-            </div>
-            <div class="thumb">
-              <img src="assets/images/14.jpg" alt="14">
-              <span>12</span>          
-            </div>        
-          </div>
-      </div>
-
-      <!-- 2. VR & 2 -->
-<div class="folder">
-        <div class="folder-header">
-          <div>
-            <div class="folder-title">VR</div>
-            <div class="folder-count">2</div>
-          </div>
-          <div class="folder-toggle-icon">+</div>
-        </div>
-        <div class="folder-body">
-          <div class="thumb-grid">
-            <div class="thumb">
-              <img src="assets/images/vr.jpg" alt="19">
-              <span>19</span>
-            </div>
-            <div class="thumb">
-              <img src="assets/images/vr1.jpg" alt="20">
-              <span>20</span>
-            </div>
-
-      <!-- 3. Eğitim & Etkinlikler: 13–18 -->
-      <div class="folder">
-        <div class="folder-header">
-          <div>
-            <div class="folder-title">Eğitim &amp; Etkinlikler</div>
-            <div class="folder-count">13 – 18</div>
-          </div>
-          <div class="folder-toggle-icon">+</div>
-        </div>
-        <div class="folder-body">
-          <div class="thumb-grid">
             <div class="thumb">
               <img src="assets/images/13.jpg" alt="13">
               <span>13</span>
@@ -432,6 +386,44 @@
               <img src="assets/images/14.jpg" alt="14">
               <span>14</span>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. VR -->
+      <div class="folder">
+        <div class="folder-header">
+          <div>
+            <div class="folder-title">VR</div>
+            <div class="folder-count">2 fotoğraf</div>
+          </div>
+          <div class="folder-toggle-icon">+</div>
+        </div>
+        <div class="folder-body">
+          <div class="thumb-grid">
+            <div class="thumb">
+              <img src="assets/images/vr.jpg" alt="VR 1">
+              <span>VR 1</span>
+            </div>
+            <div class="thumb">
+              <img src="assets/images/vr1.jpg" alt="VR 2">
+              <span>VR 2</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Eğitim & Etkinlikler: 15–18 -->
+      <div class="folder">
+        <div class="folder-header">
+          <div>
+            <div class="folder-title">Eğitim &amp; Etkinlikler</div>
+            <div class="folder-count">4 fotoğraf</div>
+          </div>
+          <div class="folder-toggle-icon">+</div>
+        </div>
+        <div class="folder-body">
+          <div class="thumb-grid">
             <div class="thumb">
               <img src="assets/images/15.jpg" alt="15">
               <span>15</span>
@@ -457,7 +449,7 @@
         <div class="folder-header">
           <div>
             <div class="folder-title">Basın &amp; Diğer Kareler</div>
-            <div class="folder-count">19 – 23</div>
+            <div class="folder-count">5 fotoğraf</div>
           </div>
           <div class="folder-toggle-icon">+</div>
         </div>
@@ -538,6 +530,8 @@
     const header = folder.querySelector('.folder-header');
     const body   = folder.querySelector('.folder-body');
     const icon   = folder.querySelector('.folder-toggle-icon');
+
+    if (!header || !body || !icon) return;
 
     // начальная высота для открытой папки
     if (folder.classList.contains('open')) {
