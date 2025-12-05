@@ -208,6 +208,7 @@
       flex-direction:column;
       align-items:center;
       justify-content:flex-start;
+      cursor:pointer;
     }
     .thumb img{
       width:100%;
@@ -256,6 +257,77 @@
       .footer-grid{grid-template-columns:1fr;}
       .header-inner{justify-content:center;}
       .header-social{margin-left:0;}
+    }
+
+    /* ---------- LIGHTBOX (fullscreen viewer) ---------- */
+    .lightbox-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.9);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+    }
+    .lightbox-overlay.active{
+      display:flex;
+    }
+    .lightbox-inner{
+      position:relative;
+      max-width:90vw;
+      max-height:90vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+    .lightbox-image{
+      max-width:100%;
+      max-height:80vh;
+      border-radius:14px;
+      box-shadow:0 20px 60px rgba(0,0,0,0.8);
+    }
+    .lightbox-caption{
+      margin-top:10px;
+      font-size:14px;
+      color:#e5e7eb;
+      text-align:center;
+    }
+    .lightbox-close{
+      position:absolute;
+      top:-40px;
+      right:0;
+      font-size:24px;
+      color:#e5e7eb;
+      cursor:pointer;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.7);
+      background:rgba(15,23,42,0.8);
+    }
+    .lightbox-arrow{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:40px;
+      height:40px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.7);
+      background:rgba(15,23,42,0.85);
+      color:#e5e7eb;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:22px;
+      cursor:pointer;
+      user-select:none;
+    }
+    .lightbox-arrow-left{ left:-60px; }
+    .lightbox-arrow-right{ right:-60px; }
+
+    @media(max-width:700px){
+      .lightbox-arrow-left{ left:10px; }
+      .lightbox-arrow-right{ right:10px; }
+      .lightbox-close{ top:10px; right:10px; }
     }
   </style>
 </head>
@@ -524,8 +596,19 @@
   </div>
 </footer>
 
+<!-- LIGHTBOX HTML -->
+<div class="lightbox-overlay" id="lightbox">
+  <div class="lightbox-inner">
+    <div class="lightbox-arrow lightbox-arrow-left" id="lightboxPrev">&#10094;</div>
+    <img class="lightbox-image" id="lightboxImage" src="" alt="">
+    <div class="lightbox-arrow lightbox-arrow-right" id="lightboxNext">&#10095;</div>
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+</div>
+
 <script>
-  // аккордеон для папок
+  // Аккордеон для папок
   document.querySelectorAll('.folder').forEach(function(folder){
     const header = folder.querySelector('.folder-header');
     const body   = folder.querySelector('.folder-body');
@@ -533,13 +616,13 @@
 
     if (!header || !body || !icon) return;
 
-    // начальная высота для открытой папки
     if (folder.classList.contains('open')) {
       body.style.maxHeight = body.scrollHeight + 'px';
       icon.textContent = '−';
     }
 
-    header.addEventListener('click', function(){
+    header.addEventListener('click', function(e){
+      // не закрывать папку, если клик по стрелке уже в lightbox (нет, но на всякий случай)
       const isOpen = folder.classList.contains('open');
       if (isOpen){
         folder.classList.remove('open');
@@ -551,6 +634,105 @@
         icon.textContent = '−';
       }
     });
+  });
+
+  // ---------- LIGHTBOX ----------
+  const lightbox        = document.getElementById('lightbox');
+  const lightboxImage   = document.getElementById('lightboxImage');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxClose   = document.getElementById('lightboxClose');
+  const lightboxPrev    = document.getElementById('lightboxPrev');
+  const lightboxNext    = document.getElementById('lightboxNext');
+
+  const thumbImgs = Array.from(document.querySelectorAll('.thumb img'));
+  const images = thumbImgs.map(function(img){
+    // подпись — alt или текст под картинкой
+    const captionEl = img.parentElement.querySelector('span');
+    return {
+      src: img.getAttribute('src'),
+      alt: img.getAttribute('alt') || (captionEl ? captionEl.textContent : '')
+    };
+  });
+
+  let currentIndex = 0;
+
+  function openLightbox(index){
+    currentIndex = index;
+    showImage(currentIndex);
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox(){
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function showImage(index){
+    const item = images[index];
+    if (!item) return;
+    lightboxImage.src = item.src;
+    lightboxImage.alt = item.alt;
+    lightboxCaption.textContent = item.alt || '';
+  }
+
+  function showNext(){
+    currentIndex = (currentIndex + 1) % images.length;
+    showImage(currentIndex);
+  }
+
+  function showPrev(){
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    showImage(currentIndex);
+  }
+
+  thumbImgs.forEach(function(img, index){
+    img.addEventListener('click', function(e){
+      e.stopPropagation();
+      openLightbox(index);
+    });
+    // чтобы клик по подписи тоже открывал
+    const captionEl = img.parentElement.querySelector('span');
+    if (captionEl){
+      captionEl.addEventListener('click', function(e){
+        e.stopPropagation();
+        openLightbox(index);
+      });
+    }
+  });
+
+  lightboxClose.addEventListener('click', function(e){
+    e.stopPropagation();
+    closeLightbox();
+  });
+
+  lightboxPrev.addEventListener('click', function(e){
+    e.stopPropagation();
+    showPrev();
+  });
+
+  lightboxNext.addEventListener('click', function(e){
+    e.stopPropagation();
+    showNext();
+  });
+
+  // клик по тёмному фону закрывает
+  lightbox.addEventListener('click', function(e){
+    if (e.target === lightbox){
+      closeLightbox();
+    }
+  });
+
+  // управление с клавиатуры
+  document.addEventListener('keydown', function(e){
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape'){
+      closeLightbox();
+    } else if (e.key === 'ArrowRight'){
+      showNext();
+    } else if (e.key === 'ArrowLeft'){
+      showPrev();
+    }
   });
 </script>
 
