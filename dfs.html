@@ -266,19 +266,6 @@ select.form-control{
   box-shadow:0 10px 24px rgba(8,47,73,0.7);
 }
 
-@media(max-width:900px){
-  .footer-grid{grid-template-columns:1fr;}
-  .header-inner{justify-content:center;}
-  .header-social{margin-left:0;}
-}
-@media(max-width:640px){
-  .contact-card{
-    padding:20px 18px 22px;
-  }
-  .form-grid{
-    grid-template-columns:1fr;
-  }
-}
 footer.footer{
   background:#111827;
   color:#d1d5db;
@@ -309,10 +296,19 @@ footer.footer{
 .footer-center p{
   margin:2px 0;
 }
+
 @media(max-width:900px){
   .footer-grid{grid-template-columns:1fr;}
   .header-inner{justify-content:center;}
   .header-social{margin-left:0;}
+}
+@media(max-width:640px){
+  .contact-card{
+    padding:20px 18px 22px;
+  }
+  .form-grid{
+    grid-template-columns:1fr;
+  }
 }
   </style>
 </head>
@@ -357,9 +353,9 @@ footer.footer{
 </header>
 
 <div class="page-wrapper">
-  <h1 class="page-title">DFS</h1>
-  <p class="page-sub"></p>
-  <img src="assets/images/dfs-lab.jpg" class="hero" alt="DFS Lab">
+ <!-- <h1 class="page-title">DFS</h1> -->
+ <!-- <p class="page-sub"></p> -->
+  <!-- <img src="assets/images/dfs-lab.jpg" class="hero" alt="DFS Lab"> -->
 
   <!-- İLETİŞİM FORMU -->
   <section class="contact-section">
@@ -375,7 +371,19 @@ footer.footer{
         </p>
       </div>
 
-      <form class="contact-form" action="#" method="post">
+      <form class="contact-form" 
+            action="https://formsubmit.co/hello@albaspace.com.tr" 
+            method="POST">
+
+        <!-- служебные поля Formsubmit -->
+        <input type="hidden" name="_subject" value="Yeni DFS form mesajı">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://albaspace.com.tr/dfs.html">
+
+        <!-- скрытое поле с человекочитаемым названием типа запроса -->
+        <input type="hidden" id="istek-turu-label" name="istek_turu_label" value="">
+
         <div class="form-grid">
           <div class="form-full">
             <label for="istek-turu" class="form-label">Talep türü</label>
@@ -483,5 +491,24 @@ footer.footer{
   </div>
 </footer>
 
+<script>
+  // заполнение скрытого поля человекочитаемым названием типа запроса
+  document.addEventListener("DOMContentLoaded", function () {
+    const select = document.getElementById("istek-turu");
+    const hidden = document.getElementById("istek-turu-label");
+
+    function updateLabel() {
+      const option = select.options[select.selectedIndex];
+      hidden.value = option ? option.text : "";
+    }
+
+    updateLabel();
+    select.addEventListener("change", updateLabel);
+  });
+</script>
+
 </body>
 </html>
+
+
+
