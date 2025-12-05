@@ -104,6 +104,105 @@
       nav.main-nav { flex-wrap:wrap; justify-content:flex-end; }
     }
   </style>
+  <style>
+  :root {
+    --header-bg: #020617;
+    --accent: #00c2ff;
+  }
+
+  .site-header {
+    width: 100%;
+    background: var(--header-bg);
+    color: #e5e7eb;
+    border-bottom: 1px solid #0f172a;
+  }
+
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .header-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #e5e7eb;
+  }
+
+  .header-logo img {
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    background: #0f172a;
+    padding: 4px;
+  }
+
+  .header-logo span {
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .main-nav {
+    margin-left: 20px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 14px;
+  }
+
+  .main-nav a {
+    color: #d1d5db;
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 2px;
+  }
+
+  .main-nav a:hover {
+    color: #ffffff;
+  }
+
+  .main-nav a.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 999px;
+  }
+
+  .top-lang-switch {
+    margin-left: auto;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    font-size: 13px;
+  }
+
+  .top-lang-switch a {
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid #4b5563;
+    background: #020617;
+    color: #e5e7eb;
+    text-decoration: none;
+  }
+
+  .top-lang-switch a.active {
+    background: #e5e7eb;
+    color: #020617;
+    font-weight: 600;
+  }
+</style>
+
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const params = new URLSearchParams(window.location.search);
@@ -127,23 +226,58 @@
       }
     });
   </script>
-</head>
-<body>
-  <a class="logo" href="/"><img src="/assets/images/albalogo.png" alt="Alba Space Logo" /></a>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="anasayfa.html" class="header-logo">
+      <img src="assets/images/albalogo.png" alt="AlbaSpace Logo">
+      <span>AlbaSpace</span>
+    </a>
 
-  <div class="top-bar">
-    <div class="lang-switch">
-      <button id="lang-tr">TR</button>
-      <button id="lang-en">EN</button>
-    </div>
     <nav class="main-nav">
-      <a href="/">ANASAYFA</a>
-      <a href="/gokturk-1/">UYDULAR</a>
-      <a href="/mars/">GEZEGENLER</a>
-      <a href="/perseverance/">MARS GÖREVLERİ</a>
-      <a href="/iss/">ISS</a>
+      <a href="index.html">ANASAYFA</a>
+      <a href="atlas.html">ATLAS</a>
+      <a href="hakkimizda.html">HAKKIMIZDA</a>
+      <a href="hizmetler.html" class="active">HİZMETLER</a>
+      <a href="shop.html">SHOP</a>
+      <a href="blog.html">BLOG</a>
+      <a href="basindabiz.html">BASINDA BİZ</a>
+      <a href="galeri.html">GALERİ</a>
+      <a href="iletisim.html">İLETİŞİM</a>
+      <a href="dfs.html">DFS</a>
     </nav>
+
+    <div class="header-social">
+      <a href="https://www.instagram.com/albaspace_/" target="_blank" aria-label="Instagram">
+        <svg class="social-icon-svg" viewBox="0 0 24 24">
+          <rect x="4" y="4" width="16" height="16" rx="5"></rect>
+          <circle cx="12" cy="12" r="4"></circle>
+          <circle cx="17" cy="7" r="1.2"></circle>
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com/in/idrisalbayrak/" target="_blank" aria-label="LinkedIn">
+        <svg class="social-icon-svg" viewBox="0 0 24 24">
+          <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+          <line x1="8" y1="10" x2="8" y2="16"></line>
+          <circle cx="8" cy="8" r="1"></circle>
+          <path d="M12 16v-3.5a2 2 0 0 1 4 0V16"></path>
+        </svg>
+      </a>
+      <a href="https://x.com/" target="_blank" aria-label="X">
+        <svg class="social-icon-svg" viewBox="0 0 24 24">
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+        </svg>
+      </a>
+    </div>
+
+    <div class="top-lang-switch">
+      <a href="hizmetler.html" class="active">TR</a>
+      <a href="hizmetler-en.html">EN</a>
+    </div>
   </div>
+</header>
+
+
 
   <h1 style="margin-top: 20px;">Zhurong</h1>
 
