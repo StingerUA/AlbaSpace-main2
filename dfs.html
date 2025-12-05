@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
@@ -106,7 +106,7 @@ body{
 .page-wrapper{
   max-width:900px;
   margin:50px auto 70px;
-  padding:0 20px;
+  padding:0 20px 40px;
   text-align:center;
 }
 .page-wrapper img.hero{
@@ -130,6 +130,154 @@ body{
   font-weight:700;
   text-transform:uppercase;
   letter-spacing:2px;
+}
+
+/* --------- CONTACT FORM (DFS) --------- */
+.contact-section{
+  margin-top:40px;
+  display:flex;
+  justify-content:center;
+}
+.contact-card{
+  width:100%;
+  max-width:720px;
+  margin:0 auto;
+  text-align:left;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(56,189,248,0.15), transparent 55%),
+    radial-gradient(circle at 100% 0%, rgba(94,234,212,0.1), transparent 55%),
+    #020617;
+  color:#e5e7eb;
+  border-radius:24px;
+  padding:24px 24px 28px;
+  border:1px solid rgba(148,163,184,0.5);
+  box-shadow:0 20px 48px rgba(15,23,42,0.75);
+}
+.contact-title{
+  font-size:22px;
+  margin:0 0 4px;
+}
+.contact-title span{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  display:inline-block;
+  margin-bottom:4px;
+  color:#38bdf8;
+}
+.contact-sub{
+  font-size:13px;
+  color:#9ca3af;
+  margin-bottom:20px;
+}
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px 18px;
+}
+.form-full{
+  grid-column:1 / -1;
+}
+.form-label{
+  display:block;
+  font-size:13px;
+  margin-bottom:4px;
+  color:#e5e7eb;
+}
+.form-control{
+  width:100%;
+  box-sizing:border-box;
+  border-radius:999px;
+  border:1px solid #1f2937;
+  background:#020617;
+  padding:10px 14px;
+  font-size:14px;
+  color:#e5e7eb;
+  outline:none;
+  transition:border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.form-control::placeholder{
+  color:#6b7280;
+}
+.form-control:focus{
+  border-color:#38bdf8;
+  box-shadow:0 0 0 1px rgba(56,189,248,0.55);
+  background:#020617;
+}
+textarea.form-control{
+  min-height:110px;
+  border-radius:18px;
+  resize:vertical;
+}
+select.form-control{
+  appearance:none;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  background-image:linear-gradient(45deg,transparent 50%,#9ca3af 50%),linear-gradient(135deg,#9ca3af 50%,transparent 50%);
+  background-position:calc(100% - 14px) 13px, calc(100% - 9px) 13px;
+  background-size:5px 5px,5px 5px;
+  background-repeat:no-repeat;
+  padding-right:34px;
+}
+.form-checkbox-row{
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+  font-size:12px;
+  color:#9ca3af;
+  margin-top:4px;
+}
+.form-checkbox-row input[type="checkbox"]{
+  margin-top:2px;
+}
+.contact-note{
+  font-size:11px;
+  color:#6b7280;
+  margin-top:6px;
+}
+.contact-submit{
+  margin-top:18px;
+}
+.contact-submit button{
+  width:100%;
+  border:none;
+  border-radius:999px;
+  padding:11px 16px;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+  background:linear-gradient(90deg,#06b6d4,#0ea5e9);
+  color:#0b1120;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  box-shadow:0 16px 32px rgba(8,47,73,0.55);
+}
+.contact-submit button span.icon{
+  font-size:15px;
+  transform:translateY(1px);
+}
+.contact-submit button:hover{
+  filter:brightness(1.03);
+}
+.contact-submit button:active{
+  transform:translateY(1px);
+  box-shadow:0 10px 24px rgba(8,47,73,0.7);
+}
+
+@media(max-width:900px){
+  .footer-grid{grid-template-columns:1fr;}
+  .header-inner{justify-content:center;}
+  .header-social{margin-left:0;}
+}
+@media(max-width:640px){
+  .contact-card{
+    padding:20px 18px 22px;
+  }
+  .form-grid{
+    grid-template-columns:1fr;
+  }
 }
 footer.footer{
   background:#111827;
@@ -166,7 +314,7 @@ footer.footer{
   .header-inner{justify-content:center;}
   .header-social{margin-left:0;}
 }
-</style>
+  </style>
 </head>
 <body>
 
@@ -209,7 +357,89 @@ footer.footer{
 </header>
 
 <div class="page-wrapper">
-<h1 class="page-title">DFS</h1><p class="page-sub"></p><img src="assets/images/dfs-lab.jpg" class="hero" alt="DFS Lab">
+  <h1 class="page-title">DFS</h1>
+  <p class="page-sub"></p>
+  <img src="assets/images/dfs-lab.jpg" class="hero" alt="DFS Lab">
+
+  <!-- İLETİŞİM FORMU -->
+  <section class="contact-section">
+    <div class="contact-card">
+      <div class="contact-header">
+        <p class="contact-title">
+          <span>DFS LAB İLE İLETİŞİM</span><br>
+          Bizimle bağlantı kurun
+        </p>
+        <p class="contact-sub">
+          İş birlikleri, projeleriniz, deneysel çalışmalarınız veya uzay temalı
+          markalaşma fikirleriniz için formu doldurun; en kısa sürede size geri dönüş yapalım.
+        </p>
+      </div>
+
+      <form class="contact-form" action="#" method="post">
+        <div class="form-grid">
+          <div class="form-full">
+            <label for="istek-turu" class="form-label">Talep türü</label>
+            <select id="istek-turu" name="istek_turu" class="form-control" required>
+              <option value="" disabled selected>Bir seçenek seçin</option>
+              <option value="iletisim">Genel iletişim / bizimle iletişime geç</option>
+              <option value="kolaborasyon">Bizimle iş birliği / kolaborasyon</option>
+              <option value="hizmet">Hizmetlerimizden birini talep etmek istiyorum</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="ad-soyad" class="form-label">Ad Soyad</label>
+            <input id="ad-soyad" name="ad_soyad" type="text" class="form-control"
+                   placeholder="Adınız ve soyadınız" required>
+          </div>
+
+          <div>
+            <label for="email" class="form-label">E-posta adresi</label>
+            <input id="email" name="email" type="email" class="form-control"
+                   placeholder="ornek@albaspace.com.tr" required>
+          </div>
+
+          <div>
+            <label for="sirket" class="form-label">Şirket / Marka (opsiyonel)</label>
+            <input id="sirket" name="sirket" type="text" class="form-control"
+                   placeholder="Şirket veya marka adınız">
+          </div>
+
+          <div>
+            <label for="konu" class="form-label">Konu</label>
+            <input id="konu" name="konu" type="text" class="form-control"
+                   placeholder="Kısaca ne hakkında yazıyorsunuz?" required>
+          </div>
+
+          <div class="form-full">
+            <label for="mesaj" class="form-label">Mesajınız</label>
+            <textarea id="mesaj" name="mesaj" class="form-control"
+                      placeholder="Projenizi, fikrinizi veya talebinizi mümkün olduğunca net anlatın." required></textarea>
+          </div>
+
+          <div class="form-full">
+            <div class="form-checkbox-row">
+              <input type="checkbox" id="kvkk" name="kvkk" required>
+              <label for="kvkk">
+                KVKK ve gizlilik politikasını okudum, kişisel verilerimin
+                bu iletişim formu kapsamında işlenmesini kabul ediyorum.
+              </label>
+            </div>
+            <p class="contact-note">
+              Formu göndererek sizinle e-posta veya telefon üzerinden iletişime geçmemizi onaylamış olursunuz.
+            </p>
+          </div>
+        </div>
+
+        <div class="contact-submit">
+          <button type="submit">
+            Formu Gönder
+            <span class="icon">↗</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
 </div>
 
 <footer class="footer">
